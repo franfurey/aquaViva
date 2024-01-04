@@ -21,7 +21,11 @@ Step 4: In Arc Tools:  choose Point to Raster and set the following:
 	Output Raster Dataset:  name_me.img or .tif or .grid
 	Cell Assignment Type:  most_frequent (default)
 	Priority Field: none (default)
-	Cellsize: 0.27 (default) (units = degrees. This produces a cell size equivalent to approximately 30 km on the ground. You can change this default cell size to a smaller one. The minimum appropriate cell size for this dataset is 0.05 degrees - this will produce a cell size equivalent to approximately 5 km on the ground. This is the maximum resolution of this dataset. Bear in mind that the smaller the cell size, the bigger the resulting file size will be).
+
+	Cellsize: 0.27 (default) (units = degrees. This produces a cell size equivalent to approximately 30 km on the ground. 
+	You can change this default cell size to a smaller one. 
+	The minimum appropriate cell size for this dataset is 0.05 degrees - this will produce a cell size equivalent to approximately 5 km on the ground. 
+	This is the maximum resolution of this dataset. Bear in mind that the smaller the cell size, the bigger the resulting file size will be).
 	
 To convert Raster to Polygon Shapefile:
 Step 5: In Arc Tools:  choose Raster to Polygon and set the following:
