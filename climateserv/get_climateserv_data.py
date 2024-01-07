@@ -16,11 +16,12 @@ def read_well_data(csv_file: str) -> pd.DataFrame:
     """
     return pd.read_csv(csv_file)
 
-def get_precipitation_average(lat: float, lon: float, start_date: str, end_date: str) -> float:
+def get_climateserv_data(id: str, lat: float, lon: float, start_date: str, end_date: str) -> str:
     """
     Get the precipitation average for a given latitude and longitude using ClimateSERV API.
 
     Parameters:
+    id (str): Well ID.
     lat (float): Latitude.
     lon (float): Longitude.
     start_date (str): Start date in MM/DD/YYYY format.
@@ -29,13 +30,16 @@ def get_precipitation_average(lat: float, lon: float, start_date: str, end_date:
     Returns:
     float: Precipitation average.
     """
-    geometry_coords = [[lon - 0.01, lat + 0.01], [lon + 0.01, lat + 0.01],
-                       [lon + 0.01, lat - 0.01], [lon - 0.01, lat - 0.01], [lon - 0.01, lat + 0.01]]
-    dataset_type = 'IMERG'  # Change as per your requirement
+    res = 0.02 # 0.1 degree resolution
+    half_res = res / 2
+    geometry_coords = [[lon - half_res, lat + half_res], [lon + half_res, lat + half_res],
+                          [lon + half_res, lat - half_res], [lon - half_res, lat - half_res], [lon - half_res, lat + half_res]]
+    # [[-16.85, 13.85], [-16.85, 13.05], [-13.78, 13.05], [-13.78, 13.85], [-16.85, 13.85]] # Gambia
+    dataset_type = 'IMERG' 
     operation_type = 'Average'
     seasonal_ensemble = ''
     seasonal_variable = ''
-    outfile = 'memory_object'
+    outfile = f"climateserv/IMERG/test{id}.csv"
 
     # Updated to use positional arguments instead of keywords
     data = climateserv.api.request_data(dataset_type, operation_type, 
@@ -45,19 +49,14 @@ def get_precipitation_average(lat: float, lon: float, start_date: str, end_date:
                                         seasonal_variable, outfile)
     return data
 
-def main():
-    wells_df = read_well_data(csv_file='./igrac/wells_df.csv')
-    start_date = '01/01/2015'
-    end_date = '12/31/2022'
-    precip_avgs = []
+## MAIN CODE ##
 
-    for index, row in wells_df.iterrows():
-        avg_precip = get_precipitation_average(lat=row['Latitude'], lon=row['Longitude'], 
-                                               start_date=start_date, end_date=end_date)
-        precip_avgs.append(avg_precip)
+# Read well data
+wells_df = read_well_data(csv_file='./igrac/wells_df.csv')
+start_date = '01/01/2015'
+end_date = '12/31/2022'
 
-    wells_df['Precipitation_Average'] = precip_avgs
-    wells_df.to_csv('wells_with_precipitation.csv', index=False)
-
-if __name__ == "__main__":
-    main()
+# Get precipitation average for each well
+for index, row in wells_df.iterrows():
+    get_climateserv_data(id=row['ID'], lat=row['Latitude'], lon=row['Longitude'], 
+                              start_date=start_date, end_date=end_date, )
