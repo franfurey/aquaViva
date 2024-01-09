@@ -1,5 +1,4 @@
-ID,Name ,Status,Latitude,Longitude,"Ground surface elevation
-"
+ID,Name ,Status,Latitude,Longitude,Ground surface elevation
 0000058001,Yoro Beri Kunda,Active,13.4984817969726,-14.7573025092349,17.4
 0000035001,Pakaliba,Active,13.5172450917462,-15.242125038732,13.34
 0000024001,Somita,Active,13.2089634495222,-16.2989315774497,27.31
