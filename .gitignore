@@ -3,7 +3,11 @@
 auth.env
 .nc
 .nc4
-
+ndvi_data.csv
+nasadem_data.csv
+NASADEM_NUMNC.001_30m_aid0001.nc
+NASADEM_NC.001_30m_aid0001.nc
+combined_precipitation_data.csv
 
 
 # Byte-compiled / optimized / DLL files
