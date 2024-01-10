@@ -1,0 +1,36 @@
+
+These notes accompany the digital quantitative groundwater maps of Africa that are available to download from : 
+https://www.bgs.ac.uk/research/groundwater/international/africanGroundwater/mapsDownload.html 
+
+To display the Africa quantitative groundwater maps of Africa in ArcMap GIS:
+
+Step 1:  Add the downloaded map file to ArcMap . Set Coordinate System to WGS 1984 if not already set.
+Step 2:  Right-click on the ascii file within the Table of Contents and choose Display X Y Values:
+	X: X
+	Y: Y
+	Set Geographic Coordinate System:  GCS_WGS_1984
+An ascii events point layer is created
+
+To save as Point Shapefile:
+Step 3:  right-click on the ascii events point layer - Export - browse to the folder location and name/save as a shapefile
+
+To convert to Raster:
+Step 4: In Arc Tools:  choose Point to Raster and set the following:
+	Input Features: the SCII Events Layer that you created in Step 2, above
+	Value Field:  DTWAFRICA_ or GWSTOR_V2 or GWPROD_V2 (depending on which map - see Note, below)
+	Output Raster Dataset:  name_me.img or .tif or .grid
+	Cell Assignment Type:  most_frequent (default)
+	Priority Field: none (default)
+	Cellsize: 0.27 (default) (units = degrees. This produces a cell size equivalent to approximately 30 km on the ground. You can change this default cell size to a smaller one. The minimum appropriate cell size for this dataset is 0.05 degrees - this will produce a cell size equivalent to approximately 5 km on the ground. This is the maximum resolution of this dataset. Bear in mind that the smaller the cell size, the bigger the resulting file size will be).
+	
+To convert Raster to Polygon Shapefile:
+Step 5: In Arc Tools:  choose Raster to Polygon and set the following:
+	Input Raster: the img or .tif or .grid file that you created in Step 4, above.
+	Field: DTWAFRICA_ or GWSTOR_V2 or GWPROD_V2 (See Note, below)
+	Output Polygon Features: name_me.shp
+
+Note:
+If xyzASCII_gwstor_v1 - the Value Field to use is:  GWSTOR_V2
+If xyzASCII_dtwmap_v2- the Value Field to use is: DTWAFRICA_
+If xyzASCII_gwprod_v1 - the Value Field to use is: GWPROD_V2
+
