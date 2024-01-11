@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from climateservaccess import getClimateservData, getBox, datatypeDict
+import climateservaccess as ca
 
 # Define some parameters
 LIS_soil_moisture_datatypes = [
@@ -9,6 +9,7 @@ LIS_soil_moisture_datatypes = [
 start_date = '01/01/2015'
 end_date = '12/31/2022'
 LIS_res = 0.01 # ~1 km resolution
+REGION = 'gambia'
 
 def check_list(type_name): # check if the list is empty, has one value or multiple values
     type_list = df[type_name].unique().tolist()
@@ -21,13 +22,13 @@ def check_list(type_name): # check if the list is empty, has one value or multip
         return type_list
 
 # Create a dataframe to store data for all datatypes: a "Date" column and columns for each datatype
-column_names = [datatypeDict[type_num] for type_num in LIS_soil_moisture_datatypes]
+column_names = [ca.datatypeDict[type_num] for type_num in LIS_soil_moisture_datatypes]
 column_names.insert(0, 'Date')
 print(column_names)
 LIS_df = pd.DataFrame(columns=column_names)
 
 # Read well data
-wells_df = pd.read_csv('../../data/processed_data/igrac/wells_gambia.csv')
+wells_df = pd.read_csv(f'data/processed_data/igrac/wells_{REGION}.csv')
 
 # Get precipitation average for each well
 for index, row in wells_df.iterrows():
@@ -38,7 +39,7 @@ for index, row in wells_df.iterrows():
     for type_num in LIS_soil_moisture_datatypes:
 
         # getBox(lat: float, lon: float, res: float)
-        df = getClimateservData(type_num, start_date, end_date, 1, 5, getBox(lat=row['Latitude'], lon=row['Longitude'], res=LIS_res))
+        df = ca.getDataFrame(type_num, start_date, end_date, "Average", ca.getBox(lat=row['Latitude'], lon=row['Longitude'], res=LIS_res))
 
         temp_data = pd.DataFrame(df['datatype'].to_list())
             
@@ -66,14 +67,14 @@ for index, row in wells_df.iterrows():
 
         # Save data to df, matching 
         LIS_df['Date'] = temp_data['date']
-        LIS_df[datatypeDict[type_num]] = temp_data['raw_value']
+        LIS_df[ca.datatypeDict[type_num]] = temp_data['raw_value']
 
     # # Create new column for a weighted average of all datatypes
     # weights = [0.05, 0.15, 0.3, 0.5] # weights for each datatype
 
     # LIS_df['LIS_Soil_Moisture_Combined'] = 0
     # for i in range(len(LIS_soil_moisture_datatypes)):
-    #     LIS_df['LIS_Soil_Moisture_Combined'] += LIS_df[datatypeDict[LIS_soil_moisture_datatypes[i]]] * weights[i]
+    #     LIS_df['LIS_Soil_Moisture_Combined'] += LIS_df[ca.datatypeDict[LIS_soil_moisture_datatypes[i]]] * weights[i]
 
     # Plot all columns of soil moisture data vs time
     plt.figure(figsize=(20, 10))
