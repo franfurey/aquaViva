@@ -1,4 +1,5 @@
 # Mines
+read.env
 .env
 auth.env
 .nc
@@ -16,6 +17,7 @@ NDWI.nc
 Curvature.nc
 Drainage_Density.nc
 Slope.nc
+data/original_data/appears/ndvi/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
