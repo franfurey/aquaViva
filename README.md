@@ -38,7 +38,30 @@ This interdisciplinary effort not only showcases the power of machine learning i
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Data
-This section will describe the data used in the training of our model.
+The AquaViva project relies on a diverse array of datasets to train our machine learning models for predicting groundwater levels in Gambia. These datasets include measurements from wells, satellite imagery, climatic variables, and geological features, providing a comprehensive understanding of the factors influencing groundwater levels.
+
+### Main Data Sources
+
+1. **Global Groundwater Information System (GGIS):**
+   - Source: [GGIS](https://ggis.un-igrac.org/)
+   - Description: GGIS is an interactive portal offering data on global groundwater resources. We use it to access data on 48 wells across Gambia, spanning 2015 to 2022, which forms our primary dataframe.
+
+2. **BGS International Work:**
+   - Source: [BGS African Groundwater](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html)
+   - Description: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their findings, including quantitative groundwater maps of Africa, to enrich our understanding of the groundwater landscape in Gambia.
+
+3. **Application for Extracting and Exploring Analysis Ready Samples (AρρEEARS):**
+   - Source: [AρρEEARS](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction)
+   - Data: We extract various parameters such as 1NDVI, MIR reflectance, EVI (250mts, 16 days), NASADEM HGT, Curvature, Drainage Density, Slope, and Hydrogeology from this platform.
+
+4. **ClimateSERV 2.0:**
+   - Source: [ClimateSERV](https://climateserv.servirglobal.net/)
+   - Description: ClimateSERV provides actionable data for decision-making on climate-related issues. We use it to gather LIS_Soil_Moisture_Combined, LIS_Streamflow, LIS_ET, and NASA_IMERG_Late data to enhance our model's predictive capabilities.
+
+By integrating these diverse datasets, AquaViva aims to deliver robust and reliable predictions of groundwater levels, contributing to the sustainable management of water resources in Gambia.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
