@@ -1,6 +1,6 @@
+import os
 import pandas as pd
 from datetime import datetime
-
 
 def clean_and_save_ndvi_dataset(csv_path: str, output_directory: str) -> None:
     """
@@ -69,8 +69,6 @@ def clean_and_save_ndvi_dataset(csv_path: str, output_directory: str) -> None:
 
 # Usage example
 # clean_and_save_dataset('path_to_your_file.csv')
-    
-import os
 
 def process_all_csv_in_directory(directory_path: str, output_directory: str) -> None:
     """
@@ -95,9 +93,8 @@ def process_all_csv_in_directory(directory_path: str, output_directory: str) -> 
             clean_and_save_ndvi_dataset(file_path, output_directory)
             print(f"Finished processing: {file_path}")
 
-
-import pandas as pd
-import os
+# Usage example
+# process_all_csv_in_directory('path_to_your_directory', 'path_to_your_output_directory')
 
 def merge_additional_data(main_df_path: str, additional_data_dir: str) -> pd.DataFrame:
     """
