@@ -62,9 +62,6 @@ By integrating these diverse datasets, AquaViva aims to deliver robust and relia
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Built With
 ![Python][Python]
 ![TensorFlow][TensorFlow]
