@@ -27,7 +27,15 @@
 
 <!-- ABOUT-->
 # About
-This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/). 
+AquaViva is a groundbreaking project aimed at addressing one of the most pressing environmental and humanitarian challenges: predicting groundwater levels in Gambia. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/) and is fueled by a deep commitment to using technology for environmental and social good.
+
+Our approach leverages advanced machine learning techniques to analyze various data sources, including satellite imagery, climatic variables, and geological features. We utilize a range of algorithms and tools such as TensorFlow, scikit-learn, and Python-based libraries to process and interpret the data effectively.
+
+At the heart of AquaViva is a mission to ensure sustainable access to clean water. By accurately predicting groundwater levels, we aim to help mitigate the impact of water scarcity, enhance agricultural practices, and support communities in the region.
+
+This interdisciplinary effort not only showcases the power of machine learning in environmental sciences but also embodies our commitment to using technology as a force for good, aligning with key Sustainable Development Goals like clean water and sanitation, and climate action.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Data
 This section will describe the data used in the training of our model.
