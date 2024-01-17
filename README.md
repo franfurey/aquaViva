@@ -13,6 +13,8 @@
       <a href="#about">About</a>
       <ul>
         <li><a href="#data">Data</a></li>
+        <li><a href="#machine-learning">Machine Learning</a></li>
+        <li><a href="#visualization">Visualization</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -27,13 +29,9 @@
 
 <!-- ABOUT-->
 # About
-AquaViva is a groundbreaking project aimed at addressing one of the most pressing environmental and humanitarian challenges: predicting groundwater levels in Gambia. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/) and is fueled by a deep commitment to using technology for environmental and social good.
+AquaViva is an innovative project aimed at addressing one of the most important sustainable development goals and overall global humanitarian challenges of our time - the lack of access to clean water (SDG 6). To accomplish this, we are using cutting-edge machine learning models, trained on various datasets including satellite imagery, climatic variables, and geological features, to produce near real-time, high resolution maps of groundwater level.
 
-Our approach leverages advanced machine learning techniques to analyze various data sources, including satellite imagery, climatic variables, and geological features. We utilize a range of algorithms and tools such as TensorFlow, scikit-learn, and Python-based libraries to process and interpret the data effectively.
-
-At the heart of AquaViva is a mission to ensure sustainable access to clean water. By accurately predicting groundwater levels, we aim to help mitigate the impact of water scarcity, enhance agricultural practices, and support communities in the region.
-
-This interdisciplinary effort not only showcases the power of machine learning in environmental sciences but also embodies our commitment to using technology as a force for good, aligning with key Sustainable Development Goals like clean water and sanitation, and climate action.
+We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -42,23 +40,35 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 
 ### Main Data Sources
 
-1. **Global Groundwater Information System (GGIS):**
+1. **Global Groundwater Information System (GGIS)**
    - Source: [GGIS](https://ggis.un-igrac.org/)
    - Description: GGIS is an interactive portal offering data on global groundwater resources. We use it to access data on 48 wells across Gambia, spanning 2015 to 2022, which forms our primary dataframe.
 
-2. **BGS International Work:**
-   - Source: [BGS African Groundwater](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html)
+2. **British Geological Survey (BGS)**
+   - Source: [BGS Africa Groundwater Maps](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html)
    - Description: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their findings, including quantitative groundwater maps of Africa, to enrich our understanding of the groundwater landscape in Gambia.
 
-3. **Application for Extracting and Exploring Analysis Ready Samples (AρρEEARS):**
+3. **Application for Extracting and Exploring Analysis Ready Samples (AρρEEARS)**
    - Source: [AρρEEARS](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction)
    - Data: We extract various parameters such as 1NDVI, MIR reflectance, EVI (250mts, 16 days), NASADEM HGT, Curvature, Drainage Density, Slope, and Hydrogeology from this platform.
 
-4. **ClimateSERV 2.0:**
+4. **ClimateSERV**
    - Source: [ClimateSERV](https://climateserv.servirglobal.net/)
    - Description: ClimateSERV provides actionable data for decision-making on climate-related issues. We use it to gather LIS_Soil_Moisture_Combined, LIS_Streamflow, LIS_ET, and NASA_IMERG_Late data to enhance our model's predictive capabilities.
 
 By integrating these diverse datasets, AquaViva aims to deliver robust and reliable predictions of groundwater levels, contributing to the sustainable management of water resources in Gambia.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Machine Learning
+
+This section will document the process of training machine learning models.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Visualization
+
+This section will cover the creation of visualizations.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
