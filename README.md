@@ -56,7 +56,27 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
    - Source: [ClimateSERV](https://climateserv.servirglobal.net/)
    - Description: ClimateSERV provides actionable data for decision-making on climate-related issues. We use it to gather LIS_Soil_Moisture_Combined, LIS_Streamflow, LIS_ET, and NASA_IMERG_Late data to enhance our model's predictive capabilities.
 
-By integrating these diverse datasets, AquaViva aims to deliver robust and reliable predictions of groundwater levels, contributing to the sustainable management of water resources in Gambia.
+### Features
+| Datatype                                      | Description                                      | Data Source                                 |
+|-----------------------------------------------|--------------------------------------------------|---------------------------------------------|
+| LIS_Soil_Moisture_Combined                     | Soil Moisture                                   | ClimateSERV/LIS                                         |
+| LIS_Streamflow                                 | Streamflow                                      | ClimateSERV/LIS                                         |
+| LIS_ET                                         | Evapotranspiration                              | ClimateSERV/LIS                                         |
+| MOD13Q1_061__250m_16_days_EVI                  | Enhanced Vegetation Index (EVI)                 | AρρEEARS/MODIS                                       |
+| MOD13Q1_061__250m_16_days_MIR_reflectance      | Mid-Infrared Reflectance                        | AρρEEARS/MODIS                                       |
+| MOD13Q1_061__250m_16_days_NDVI                 | Normalized Difference Vegetation Index (NDVI)   | AρρEEARS/MODIS                                       |
+| NASA_IMERG_Late                                | Precipitation                                   | ClimateSERV/IMERG                                        |
+| DepthToGroundwater                             | Estimated Groundwater Level Range               | BGS                                           |
+| Curvatu_tif2                                   | Curvature                                       | -                                           |
+| Drainage_density                               | Drainage Density                                | -                                           |
+| Slope_tif2                                     | Slope                                           | -                                           |
+| Hydrogeo                                       | Hydrogeological Region                          | IGRAC                                           |
+| NASADEM_HGT                                    | Elevation                                     | AρρEEARS/NASADEM                                     |
+
+### Output
+| Datatype                                      | Description                                      | Data Source                                 |
+|-----------------------------------------------|--------------------------------------------------|---------------------------------------------|
+| GROUNDWATER_LEVEL                             | Groundwater Level                                | IGRAC/GGIS                                      |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
