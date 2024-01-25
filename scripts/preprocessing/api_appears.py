@@ -231,7 +231,30 @@ def download_file_from_bundle(token: str, task_id: str, file_id: str, file_path:
 import csv
 from typing import List
 
+import csv
+from typing import List, Union, Optional
+
+def read_last_processed_index(file_path: str) -> int:
+    """
+    Reads the last processed index from a file.
+
+    Args:
+        file_path (str): Path to the file containing the last processed index.
+
+    Returns:
+        int: The last processed index. Returns -1 if the file does not exist or is empty.
+    """
+    try:
+        with open(file_path, 'r') as file:
+            last_index = file.readline()
+            return int(last_index.strip()) if last_index else -1
+    except FileNotFoundError:
+        return -1
+
+
+
 def process_csv_and_submit_tasks(csv_file: str, 
+                                 results_csv: str,
                                  username: str, 
                                  password: str, 
                                  task_type: str, 
@@ -241,28 +264,43 @@ def process_csv_and_submit_tasks(csv_file: str,
                                  product: str, 
                                  file_type: str, 
                                  layers: List[str],
-                                 geojson: Union[Dict, None] = None
-                                 ) -> List[dict]:
+                                 geojson: Optional[Dict] = None,
+                                 last_processed_file: str = 'last_processed.txt'
+                                 ) -> None:
     """
-    Reads a CSV file, submits a task for each row, and returns a list of task IDs with coordinates and IDs.
-
-    Args:
-        ... (other parameters remain the same)
-        task_type (str): Type of the task.
-        task_name (str): Name of the task.
-
-    Returns:
-        List[dict]: A list of dictionaries containing IDs, coordinates, and task IDs.
+    Reads a CSV file, submits a task for each row, and saves results to a CSV file.
     """
-    results = []
-    with open(csv_file, mode='r') as file:
+    last_processed_index = read_last_processed_index(last_processed_file)
+
+    with open(csv_file, mode='r') as file, open(results_csv, mode='a', newline='') as results_file:
         csv_reader = csv.DictReader(file)
-        for row in csv_reader:
-            latitude = float(row['Latitude'])
-            longitude = float(row['Longitude'])
-            location_id = row['ID']
-            task_name=f"{location_id}-{base_task_name}"
+        results_writer = csv.DictWriter(results_file, fieldnames=['Index', 'Latitude', 'Longitude', 'Task_ID'])
+        
+        # Check if the results file is empty and write the header if it is
+        results_file.seek(0, os.SEEK_END)
+        if results_file.tell() == 0:
+            results_writer.writeheader()
 
+        for index, row in enumerate(csv_reader):
+            if index <= last_processed_index:
+                continue  # Skip already processed rows
+
+            # Procesamiento de las coordenadas
+            if 'Latitude' in row and 'Longitude' in row:
+                latitude = float(row['Latitude'])
+                longitude = float(row['Longitude'])
+            elif 'lat' in row and 'long' in row:
+                latitude = float(row['lat'])
+                longitude = float(row['long'])
+            else:
+                print(f"Latitude and Longitude columns not found in row: {row}")
+                continue  # Skip to the next row
+
+            # Uso del índice como ID de ubicación
+            location_id = index
+            task_name = f"{location_id}-{base_task_name}"
+
+            # Llamada a create_and_submit_task (asegúrate de que esta función exista en tu código)
             task_id = create_and_submit_task(
                 username=username,
                 password=password,
@@ -277,10 +315,23 @@ def process_csv_and_submit_tasks(csv_file: str,
                 file_type=file_type,
                 geojson=geojson
             )
-            print(f"Submitted task for ID {location_id}, coordinates ({latitude}, {longitude}). Task ID: {task_id}")
-            results.append({'ID': location_id, 'Latitude': latitude, 'Longitude': longitude, 'Task_ID': task_id})
 
-    return results
+            print(f"Submitted task for Index {location_id}, coordinates ({latitude}, {longitude}). Task ID: {task_id}")
+
+            # Escribir en el CSV de resultados
+            results_writer.writerow({'Index': location_id, 'Latitude': latitude, 'Longitude': longitude, 'Task_ID': task_id})
+            results_file.flush()
+
+            # Pausa después de cada 100 filas
+            if index % 100 == 0 and index != 0:
+                print("Processing paused for 60 seconds to prevent overload.")
+                time.sleep(60)  # Pause for 60 seconds
+
+            # Actualizar el archivo de último índice procesado después de cada fila
+            with open(last_processed_file, 'w') as f:
+                f.write(str(index))
+
+    return results_writer
 
 def save_task_ids_to_csv(task_data: List[dict], 
                          output_csv: str
