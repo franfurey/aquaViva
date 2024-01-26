@@ -33,6 +33,8 @@ AquaViva is an innovative project aimed at addressing one of the most important 
 
 We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good.
 
+Team Members: Francisco Furey, Adam Zheng, Malena Vildoza, Malick Dieye (AKA Jay) 😊
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Data
@@ -94,8 +96,12 @@ This section will cover the creation of visualizations.
 
 ## Built With
 ![Python][Python]
+![scikit-learn][scikit-learn]
 ![TensorFlow][TensorFlow]
 ![Jupyter][Jupyter]
+![HTML][HTML]
+![CSS][CSS]
+![JavaScript][JavaScript]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -152,3 +158,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Python]: https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue
 [Jupyter]: https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white
 [TensorFlow]: https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white
+[JavaScript]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
+[HTML]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[CSS]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[scikit-learn]: https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white
