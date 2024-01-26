@@ -69,9 +69,9 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 | MOD13Q1_061__250m_16_days_NDVI                 | Normalized Difference Vegetation Index (NDVI)   | AρρEEARS/MODIS                                       |
 | NASA_IMERG_Late                                | Precipitation                                   | ClimateSERV/IMERG                                        |
 | DepthToGroundwater                             | Estimated Groundwater Level Range               | BGS                                           |
-| Curvatu_tif2                                   | Curvature                                       | -                                           |
-| Drainage_density                               | Drainage Density                                | -                                           |
-| Slope_tif2                                     | Slope                                           | -                                           |
+| Curvatu_tif2                                   | Curvature                                       | AρρEEARS/NASADEM                                           |
+| Drainage_density                               | Drainage Density                                | AρρEEARS/NASADEM                                           |
+| Slope_tif2                                     | Slope                                           | AρρEEARS/NASADEM                                           |
 | Hydrogeo                                       | Hydrogeological Region                          | IGRAC                                           |
 | NASADEM_HGT                                    | Elevation                                     | AρρEEARS/NASADEM                                     |
 
