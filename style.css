@@ -1,0 +1,72 @@
+/*Body*/
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #004f74 0%, #000000 100%);
+    overflow: hidden;
+    min-height: 100vh;
+  }
+  a:link { text-decoration: none; }
+  a:visited { text-decoration: none; }
+  a:hover { text-decoration: none; }
+  a:active { text-decoration: underline; }
+
+body h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8vw;
+    color: #29bbff;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: 30vh;
+}
+body h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.35vw;
+    letter-spacing: 0.15vw;
+    color: #008dce;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: 30vh;
+}
+#button-container {
+    position: absolute; /* Absolute positioning */
+    left: 50%; /* Center horizontally */
+    bottom: 24vh;
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    width: 6vw; /* Auto width based on content */
+}
+
+#button1 {
+    width: 6vw;
+    height: 5vh;
+    background-color: black;
+    border: 1px solid #008dce;
+    border-radius: 5px;
+    padding: 7px;
+    color: #008dce;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9vw;
+    text-align: center;
+    cursor: pointer;
+}
+
+#button1:hover {
+    background-color: #29bbff;
+    color: black;
+}
+
+#github {
+    position: absolute; /* Absolute positioning */
+    width: 2.4vw;
+    height: 2.4vw;
+    right: 2vh;
+    bottom: 2vh;
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    opacity: 0.7;
+}
+#github:hover {
+    opacity: 1;
+}
