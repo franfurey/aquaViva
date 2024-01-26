@@ -33,8 +33,6 @@ AquaViva is an innovative project aimed at addressing one of the most important 
 
 We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good.
 
-Team Members: Francisco Furey, Adam Zheng, Malena Vildoza, Malick Dieye (AKA Jay) 😊
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Data
@@ -84,7 +82,19 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 
 ## Machine Learning
 
-This section will document the process of training machine learning models.
+ Our preprocessing steps involved handling diverse data formats and large file sizes (.nc4, .nc, .csv), necessitating careful data cleaning, including addressing missing data with techniques like nearest neighbors. Our final dataset comprised approximately 6300 rows and 22 columns (36 wells information above all Gambia). We use libraries like geopandas to merge the different dataset based on Latitude and Longitude.
+
+Machine Learning Models and Training
+ For the machine learning component, we divided our dataset based on well IDs to avoid overfitting, allocating 83% for training and 17% for testing (we didnt have to much data so we need to carefully give more data to the train side). We employed various regression models, including [SVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html), [AdaBoostRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html), [GradientBoostingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html), [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [SGDRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html), and [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html). Our evaluation focused on metrics like Mean Squared Error (MSE), Mean Absolute Error (MAE) and the Coefficient of Determination (R²).
+
+After rigorous testing, [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html) emerged as the most effective model, delivering an MAE of 2.6 meters and an R² of 0.42. We also applied [Cross-Validation](https://scikit-learn.org/stable/modules/cross_validation.html) and [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) for hyperparameter tuning to optimize the model's performance, and combined [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html) with [Nystroem](https://scikit-learn.org/stable/modules/generated/sklearn.kernel_approximation.Nystroem.html) for kernel optimization.
+
+Challenges and Future Directions
+Our computational resources limited our ability to test more computationally intensive models like neural networks. However, with access to more powerful machines, exploring these models could yield even more promising results.
+
+Technical Implementation
+Our implementation involved several Python libraries for data processing and machine learning. Key libraries included [Pandas](https://pandas.pydata.org/), [NumPy](https://numpy.org/), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Geopandas](https://geopandas.org/en/stable/), [Sickit-Learn](https://scikit-learn.org/stable/), [netCDF4](https://github.com/Unidata/netcdf4-python) and [xarray](https://docs.xarray.dev/en/stable/). We used a Jupyter Notebook environment for development and testing.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -96,12 +106,8 @@ This section will cover the creation of visualizations.
 
 ## Built With
 ![Python][Python]
-![scikit-learn][scikit-learn]
 ![TensorFlow][TensorFlow]
 ![Jupyter][Jupyter]
-![HTML][HTML]
-![CSS][CSS]
-![JavaScript][JavaScript]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -137,10 +143,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## References
 * [A Machine Learning Approach to Predict Groundwater Levels in California Reveals Ecosystems at Risk](https://www.frontiersin.org/articles/10.3389/feart.2021.784499/full#h3)
-* [Groundwater Prediction Using Machine-Learning Tools](https://www.mdpi.com/1999-4893/13/11/300)
-* [Prediction of groundwater level fluctuations under climate change based on machine learning algorithms in the Mashhad aquifer, Iran](https://iwaponline.com/jwcc/article/14/3/1039/93926/Prediction-of-groundwater-level-fluctuations-under)
-* [CSS Back Button](https://codepen.io/ender2821/pen/LpgYOB)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -162,7 +164,3 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Python]: https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue
 [Jupyter]: https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white
 [TensorFlow]: https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white
-[JavaScript]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
-[HTML]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
-[CSS]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
-[scikit-learn]: https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white
