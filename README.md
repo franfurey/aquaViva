@@ -5,6 +5,21 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
+<!-- PROJECT LOGO -->
+<div align="center">
+  <a href="https://franfurey.github.io/aquaViva/">
+    <img src="visualization/public/visual.png"/>
+  </a>
+</div>
+
+<p align="center">
+  <br/>
+  <a href="https://github.com/franfurey/aquaViva" target="_blank"><img src="https://img.shields.io/badge/-View%20Website-29bbff?style=for-the-badge"/></a>
+  <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Report%20Bug-black?style=for-the-badge"/></a>
+  <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Request%20Feature-black?style=for-the-badge"/></a>
+  <br />
+</p>
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents</b></summary>
@@ -33,7 +48,7 @@ AquaViva is an innovative project aimed at addressing one of the most important 
 
 We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good.
 
-Team Members: Francisco Furey, Adam Zheng, Malena Vildoza, Malick Dieye (AKA Jay) 😊
+**Created by Team Viva Aqua** | **Francisco Furey, Adam Zheng, Malena Vildoza, Malick Dieye (AKA Jay) 😊**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -42,43 +57,35 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 
 ### Main Data Sources
 
-1. **Global Groundwater Information System (GGIS)**
-   - Source: [GGIS](https://ggis.un-igrac.org/)
-   - Description: GGIS is an interactive portal offering data on global groundwater resources. We use it to access data on 48 wells across Gambia, spanning 2015 to 2022, which forms our primary dataframe.
+1. **[Global Groundwater Information System](https://ggis.un-igrac.org/) (GGIS)**: An interactive portal offering data on global groundwater resources. We use it to access piezometric data on 36 wells across Gambia, spanning 2015 to 2022, as well as data on hydrogeological regions.
 
-2. **British Geological Survey (BGS)**
-   - Source: [BGS Africa Groundwater Maps](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html)
-   - Description: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their findings, including quantitative groundwater maps of Africa, to enrich our understanding of the groundwater landscape in Gambia.
+2. **[British Geological Survey](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html) (BGS)**: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their depth to groundwater data, which classifies data into 6 categories (0-7, 7-25, 25-50, 50-100, 100-250, >250 meters) - significantly lower resolution & precision than our targets, but still potentially useful.
 
-3. **Application for Extracting and Exploring Analysis Ready Samples (AρρEEARS)**
-   - Source: [AρρEEARS](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction)
-   - Data: We extract various parameters such as 1NDVI, MIR reflectance, EVI (250mts, 16 days), NASADEM HGT, Curvature, Drainage Density, Slope, and Hydrogeology from this platform.
+3. **[Application for Extracting and Exploring Analysis Ready Samples](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction) (AρρEEARS)**: We used this tool to extract various parameters such as NDVI, MIR, EVI, Elevation, Curvature, Drainage Density, and Slope.
 
-4. **ClimateSERV**
-   - Source: [ClimateSERV](https://climateserv.servirglobal.net/)
-   - Description: ClimateSERV provides actionable data for decision-making on climate-related issues. We use it to gather LIS_Soil_Moisture_Combined, LIS_Streamflow, LIS_ET, and NASA_IMERG_Late data to enhance our model's predictive capabilities.
+4. **[ClimateSERV](https://climateserv.servirglobal.net/help)**: A tool by SERVIR, NASA, & USAID that provides climatic and vegetation data. We used the ClimateSERV API and wrote a Python library ([climateservAccess](https://pypi.org/project/climateservaccess/)) to gather soil moisture, evapotranspiration, streamflow, and precipitation data. 
 
 ### Features
-| Datatype                                      | Description                                      | Data Source                                 |
-|-----------------------------------------------|--------------------------------------------------|---------------------------------------------|
-| LIS_Soil_Moisture_Combined                     | Soil Moisture                                   | ClimateSERV/LIS                                         |
-| LIS_Streamflow                                 | Streamflow                                      | ClimateSERV/LIS                                         |
-| LIS_ET                                         | Evapotranspiration                              | ClimateSERV/LIS                                         |
-| MOD13Q1_061__250m_16_days_EVI                  | Enhanced Vegetation Index (EVI)                 | AρρEEARS/MODIS                                       |
-| MOD13Q1_061__250m_16_days_MIR_reflectance      | Mid-Infrared Reflectance                        | AρρEEARS/MODIS                                       |
-| MOD13Q1_061__250m_16_days_NDVI                 | Normalized Difference Vegetation Index (NDVI)   | AρρEEARS/MODIS                                       |
-| NASA_IMERG_Late                                | Precipitation                                   | ClimateSERV/IMERG                                        |
-| DepthToGroundwater                             | Estimated Groundwater Level Range               | BGS                                           |
-| Curvatu_tif2                                   | Curvature                                       | AρρEEARS/NASADEM                                           |
-| Drainage_density                               | Drainage Density                                | AρρEEARS/NASADEM                                           |
-| Slope_tif2                                     | Slope                                           | AρρEEARS/NASADEM                                           |
-| Hydrogeo                                       | Hydrogeological Region                          | IGRAC                                           |
-| NASADEM_HGT                                    | Elevation                                     | AρρEEARS/NASADEM                                     |
+| Datatype                                      | Description                                      | Data Source                                 | Resolution       |
+|-----------------------------------------------|--------------------------------------------------|---------------------------------------------|------------------|
+| LIS_Soil_Moisture_Combined                     | Soil Moisture                                   | ClimateSERV/LIS                              | 3 km            |
+| LIS_Streamflow                                 | Streamflow                                      | ClimateSERV/LIS                              | 3 km            |
+| LIS_ET                                         | Evapotranspiration                              | ClimateSERV/LIS                              | 3 km            |
+| MOD13Q1_061__250m_16_days_EVI                  | Enhanced Vegetation Index (EVI)                 | AρρEEARS/MODIS                               | 250 m           |
+| MOD13Q1_061__250m_16_days_MIR_reflectance      | Mid-Infrared Reflectance                        | AρρEEARS/MODIS                               | 250 m           |
+| MOD13Q1_061__250m_16_days_NDVI                 | Normalized Difference Vegetation Index (NDVI)   | AρρEEARS/MODIS                               | 250 m           |
+| NASA_IMERG_Late                                | Precipitation                                   | ClimateSERV/IMERG                            | 10 km           |
+| DepthToGroundwater                             | Estimated Groundwater Level Range               | BGS                                          | 5 km            |
+| Curvatu_tif2                                   | Curvature                                       | AρρEEARS/NASADEM                             | 30 m            |
+| Drainage_density                               | Drainage Density                                | AρρEEARS/NASADEM                             | 30 m            |
+| Slope_tif2                                     | Slope                                           | AρρEEARS/NASADEM                             | 30 m            |
+| Hydrogeo                                       | Hydrogeological Region                          | IGRAC/GGIS                                   | N/A             |
+| NASADEM_HGT                                    | Elevation                                       | AρρEEARS/NASADEM                             | 30 m            |
 
 ### Output
 | Datatype                                      | Description                                      | Data Source                                 |
 |-----------------------------------------------|--------------------------------------------------|---------------------------------------------|
-| GROUNDWATER_LEVEL                             | Groundwater Level                                | IGRAC/GGIS                                      |
+| GROUNDWATER_LEVEL                             | Groundwater Level                                | IGRAC/GGIS                                  |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -150,7 +157,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * [A Machine Learning Approach to Predict Groundwater Levels in California Reveals Ecosystems at Risk](https://www.frontiersin.org/articles/10.3389/feart.2021.784499/full#h3)
 * [Groundwater Prediction Using Machine-Learning Tools](https://www.mdpi.com/1999-4893/13/11/300)
 * [Prediction of groundwater level fluctuations under climate change based on machine learning algorithms in the Mashhad aquifer, Iran](https://iwaponline.com/jwcc/article/14/3/1039/93926/Prediction-of-groundwater-level-fluctuations-under)
-* [CSS Back Button](https://codepen.io/ender2821/pen/LpgYOB)
+* [CodePen Back Button](https://codepen.io/ender2821/pen/LpgYOB)
+* [CodePen Info on Hover](https://codepen.io/ruppysuppy/pen/rNWdWNp)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
