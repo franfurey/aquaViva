@@ -35,6 +35,8 @@
             background-size: cover;
             min-height: 100vh;
           }
+
+          /* Back Button */
           .back-button{
             width:20px;
             height:20px;
@@ -124,7 +126,6 @@
       <body>
 
         <!-- Create a full screen with small text in the middle that scrolls down to reveal the map below -->
-        <!-- <p style="z-index: 10; display: inline-block; justify-content: flex-end; align-items: center; position: relative; font-family: Montserrat; font-size: 14px; color:white; background-color: rgb(0, 65, 85); margin-right: auto; padding: 0 7px;"><b>December 1, 2023</b></p> -->
 
         <!-- We will put our React component inside this div. -->
         <div id="app">
@@ -228,11 +229,11 @@
               }, []);
               return react.createElement(
                 'div',
-                {style: {position: 'absolute', left: 0, right: 0, top: `${(1-heightFraction) * 50}vh`, margin: 'auto', width: `${widthFraction * 100}vw`, height: `${heightFraction * 100}vh`, borderTop: '1px solid #03A9F4', borderBottom: '1px solid #03A9F4', borderLeft: '1px solid #03A9F4', borderRight: '1px solid #03A9F4'}},
-                react.createElement('p', {style: {color: '#03A9F4', textAlign: 'center', fontFamily: "Montserrat", fontSize: '1.8vh'}, 
+                {style: {position: 'absolute', left: 0, right: 0, top: `${(1-heightFraction) * 50}vh`, margin: 'auto', width: `${widthFraction * 100}vw`, height: `${heightFraction * 100}vh`, border: '1px solid #03A9F4', padding: '2px'}},
+                react.createElement('p', {style: {color: '#03A9F4', textAlign: 'center', fontFamily: "Montserrat", fontSize: '1.8vmin', fontWeight: 'bold'}, 
                   width: windowDimension.width * widthFraction,
                   height: windowDimension.height * heightFraction * 0.1},
-                  'December 1, 2023'),
+                  'West Gambia Groundwater Level Map | December 1, 2023'),
                 react.createElement(keplerGl.KeplerGl, {style: {border: '1px solid white'}, 
                   mapboxApiAccessToken: mapboxToken,
                   id: "map",
