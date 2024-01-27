@@ -7,14 +7,14 @@
 
 <!-- PROJECT LOGO -->
 <div align="center">
-  <a href="https://franfurey.github.io/aquaViva/">
+  <a href="https://franfurey.github.io/aquaViva/" target="_blank">
     <img src="visualization/public/visual.png"/>
   </a>
 </div>
 
 <p align="center">
   <br/>
-  <a href="https://github.com/franfurey/aquaViva" target="_blank"><img src="https://img.shields.io/badge/-View%20Website-29bbff?style=for-the-badge"/></a>
+  <a href="https://franfurey.github.io/aquaViva/" target="_blank"><img src="https://img.shields.io/badge/-View%20Website-29bbff?style=for-the-badge"/></a>
   <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Report%20Bug-black?style=for-the-badge"/></a>
   <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Request%20Feature-black?style=for-the-badge"/></a>
   <br />
@@ -24,15 +24,18 @@
 <details>
   <summary><b>Table of Contents</b></summary>
   <ol>
+    <li><a href="#about">About</a></li>
     <li>
-      <a href="#about">About</a>
+      <a href="#data">Data</a>
       <ul>
-        <li><a href="#data">Data</a></li>
-        <li><a href="#machine-learning">Machine Learning</a></li>
-        <li><a href="#visualization">Visualization</a></li>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#data-sources">Data Sources</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#output">Output</a></li>
       </ul>
     </li>
+    <li><a href="#machine-learning">Machine Learning</a></li>
+    <li><a href="#visualization">Visualization</a></li>
+    <li><a href="#built-with">Built With</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -46,24 +49,28 @@
 # About
 AquaViva is an innovative project aimed at addressing one of the most important sustainable development goals and overall global humanitarian challenges of our time - the lack of access to clean water (SDG 6). To accomplish this, we are using cutting-edge machine learning models, trained on various datasets including satellite imagery, climatic variables, and geological features, to produce near real-time, high resolution maps of groundwater level.
 
-We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good.
+We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good. As per challenge guidelines, all datasets and tools used were 100% open-source.
 
 **Created by Team Viva Aqua** | **Francisco Furey, Adam Zheng, Malena Vildoza, Malick Dieye (AKA Jay) 😊**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Data
+# Data
 The AquaViva project relies on a diverse array of datasets to train our machine learning models for predicting groundwater levels in Gambia. These datasets include measurements from wells, satellite imagery, climatic variables, and geological features, providing a comprehensive understanding of the factors influencing groundwater levels.
 
-### Main Data Sources
+1. **Data Collection:** First and foremost, we used GGIS to obtain piezometric (groundwater level) data from 2015-2022 for 36 wells distributed across Gambia. Then we gathered corresponding data for our 13 input variables (see <a href="#features">Features</a>), sourced from AρρEEARS, ClimateSERV, BGS, and GGIS (see <a href="#data-sources">Data Sources</a>). QGIS was also used to process hydrogeological region and topographical data.
+2. **Data Cleaning and Preprocessing:** We used Jupyter notebooks to manage the various data formats (.nc4, .nc, .csv), visualize/analyze the raw data, and account for missing/erroneous data using nearest neighbor algorithms and linear interpolation.
+3. **Data Integration:** Using pandas & geopandas, we merged datasets based on date, latitude, and longitude to form our primary dataset, with ~6300 rows. 
 
-1. **[Global Groundwater Information System](https://ggis.un-igrac.org/) (GGIS)**: An interactive portal offering data on global groundwater resources. We use it to access piezometric data on 36 wells across Gambia, spanning 2015 to 2022, as well as data on hydrogeological regions.
+### Data Sources
 
-2. **[British Geological Survey](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html) (BGS)**: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their depth to groundwater data, which classifies data into 6 categories (0-7, 7-25, 25-50, 50-100, 100-250, >250 meters) - significantly lower resolution & precision than our targets, but still potentially useful.
+* **[Global Groundwater Information System](https://ggis.un-igrac.org/) (GGIS)**: An interactive portal offering data on global groundwater resources. We use it to access groundwater level data as well as data on hydrogeological regions.
 
-3. **[Application for Extracting and Exploring Analysis Ready Samples](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction) (AρρEEARS)**: We used this tool to extract various parameters such as NDVI, MIR, EVI, Elevation, Curvature, Drainage Density, and Slope.
+* **[British Geological Survey](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html) (BGS)**: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their depth to groundwater data, which classifies data into 6 categories (0-7, 7-25, 25-50, 50-100, 100-250, >250 meters) - significantly lower resolution & precision than our targets, but still potentially useful.
 
-4. **[ClimateSERV](https://climateserv.servirglobal.net/help)**: A tool by SERVIR, NASA, & USAID that provides climatic and vegetation data. We used the ClimateSERV API and wrote a Python library ([climateservAccess](https://pypi.org/project/climateservaccess/)) to gather soil moisture, evapotranspiration, streamflow, and precipitation data. 
+* **[Application for Extracting and Exploring Analysis Ready Samples](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction) (AρρEEARS)**: We used this tool to extract various parameters such as NDVI, MIR, EVI, Elevation, Curvature, Drainage Density, and Slope.
+
+* **[ClimateSERV](https://climateserv.servirglobal.net/help)**: A tool by SERVIR, NASA, & USAID that provides climatic and vegetation data. We used the ClimateSERV API and wrote a Python library ([climateservAccess](https://pypi.org/project/climateservaccess/)) to gather soil moisture, evapotranspiration, streamflow, and precipitation data. 
 
 ### Features
 | Datatype                                      | Description                                      | Data Source                                 | Resolution       |
@@ -89,26 +96,19 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Machine Learning
+# Machine Learning
 
- Our preprocessing steps involved handling diverse data formats and large file sizes (.nc4, .nc, .csv), necessitating careful data cleaning, including addressing missing data with techniques like nearest neighbors. Our final dataset comprised approximately 6300 rows and 22 columns (36 wells information above all Gambia). We use libraries like geopandas to merge the different dataset based on Latitude and Longitude.
-
-Machine Learning Models and Training
- For the machine learning component, we divided our dataset based on well IDs to avoid overfitting, allocating 83% for training and 17% for testing (we didnt have to much data so we need to carefully give more data to the train side). We employed various regression models, including [SVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html), [AdaBoostRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html), [GradientBoostingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html), [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [SGDRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html), and [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html). Our evaluation focused on metrics like Mean Squared Error (MSE), Mean Absolute Error (MAE) and the Coefficient of Determination (R²).
-
-After rigorous testing, [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html) emerged as the most effective model, delivering an MAE of 2.6 meters and an R² of 0.42. We also applied [Cross-Validation](https://scikit-learn.org/stable/modules/cross_validation.html) and [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) for hyperparameter tuning to optimize the model's performance, and combined [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html) with [Nystroem](https://scikit-learn.org/stable/modules/generated/sklearn.kernel_approximation.Nystroem.html) for kernel optimization.
-
-Challenges and Future Directions
-Our computational resources limited our ability to test more computationally intensive models like neural networks. However, with access to more powerful machines, exploring these models could yield even more promising results.
-
-Technical Implementation
-Our implementation involved several Python libraries for data processing and machine learning. Key libraries included [Pandas](https://pandas.pydata.org/), [NumPy](https://numpy.org/), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Geopandas](https://geopandas.org/en/stable/), [Sickit-Learn](https://scikit-learn.org/stable/), [netCDF4](https://github.com/Unidata/netcdf4-python) and [xarray](https://docs.xarray.dev/en/stable/). We used a Jupyter Notebook environment for development and testing.
+4. **Model Selection and Training:** First, we divided our dataset based on well IDs to avoid overfitting, allocating 83% for training and 17% for testing. We trained 6 different regression models using [scikit-learn](https://scikit-learn.org/stable/):  [SVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html), [AdaBoostRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html), [GradientBoostingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html), [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [SGDRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html), and [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html). Our computational resources limited our ability to test more computationally intensive models like neural networks. However, with access to more powerful machines, exploring these models could yield even more promising results.
+5. **Model Evaluation:** We employed metrics like [Mean Squared Error (MSE)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html), [Mean Absolute Error (MAE)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html), and [Coefficient of Determination (R²)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html) for performance assessment, achieving our best result (MAE = 2.6 m, R² = 0.42) with **Linear SVR**.
+6. **Model Optimization:** We also applied [Cross-Validation](https://scikit-learn.org/stable/modules/cross_validation.html) and [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) for hyperparameter tuning to optimize the model's performance, and combined [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html) with [Nystroem](https://scikit-learn.org/stable/modules/generated/sklearn.kernel_approximation.Nystroem.html) for kernel optimization.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Visualization
+# Visualization
 
-This section will cover the creation of visualizations.
+7. **Visualization Data:** We gathered feature data for our area of interest, processed and compiled it as before, and ran it through the Linear SVR model to get predicted groundwater levels. Due to time constraints, we only used data at 500m resolution, but higher resolutions would have otherwise been entirely feasible. 
+8. **Visualization Creation:** We first used IDW (Inverse Distance Weighting) interpolation in QGIS to increase the resolution to about 177m. Then we used [kepler.gl](https://kepler.gl/) to put together our interactive visualization, exported it to an html file, and customized it to create our Aqua Viva website.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,6 +120,17 @@ This section will cover the creation of visualizations.
 ![HTML][HTML]
 ![CSS][CSS]
 ![JavaScript][JavaScript]
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
+![Seaborn](https://img.shields.io/badge/Seaborn-turquoise?style=for-the-badge&logo=python&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=white)
+![Geopandas](https://img.shields.io/badge/Geopandas-%2369c400.svg?style=for-the-badge&logo=python&logoColor=white)
+![netCDF4](https://img.shields.io/badge/netCDF4-%23a6efff.svg?style=for-the-badge&logo=python&logoColor=black)
+![Xarray](https://img.shields.io/badge/Xarray-%23cc1b04.svg?style=for-the-badge&logo=python&logoColor=white)
+![climateservAccess](https://img.shields.io/badge/climateservAccess-%230049a3.svg?style=for-the-badge&logo=python&logoColor=orange)
+![QGIS](https://img.shields.io/badge/QGIS-%23006e4b.svg?style=for-the-badge&logo=qgis&logoColor=white)
+![Kepler.gl](https://img.shields.io/badge/Kepler.gl-%2300aee3.svg?style=for-the-badge&logo=kepler&logoColor=black)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -165,7 +176,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- https://github.com/Ileriayo/markdown-badges -->
 [contributors-shield]: https://img.shields.io/github/contributors/franfurey/aquaViva.svg?style=for-the-badge
 [contributors-url]: https://github.com/franfurey/aquaViva/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/franfurey/aquaViva.svg?style=for-the-badge
