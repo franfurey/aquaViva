@@ -12,6 +12,8 @@
   </a>
 </div>
 
+<a name="readme-top"></a>
+
 <p align="center">
   <br/>
   <a href="https://franfurey.github.io/aquaViva/" target="_blank"><img src="https://img.shields.io/badge/-View%20Website-29bbff?style=for-the-badge"/></a>
@@ -19,7 +21,6 @@
   <br />
 </p>
 
-<a name="readme-top"></a>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents</b></summary>
