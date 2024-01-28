@@ -15,8 +15,7 @@
 <p align="center">
   <br/>
   <a href="https://franfurey.github.io/aquaViva/" target="_blank"><img src="https://img.shields.io/badge/-View%20Website-29bbff?style=for-the-badge"/></a>
-  <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Report%20Bug-black?style=for-the-badge"/></a>
-  <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Request%20Feature-black?style=for-the-badge"/></a>
+  <a href="https://github.com/franfurey/aquaViva/issues"><img src="https://img.shields.io/badge/-Report%20Issue-black?style=for-the-badge"/></a>
   <br />
 </p>
 
@@ -61,7 +60,7 @@ For our training data, we conducted an extensive literature review into past stu
 
 1. **Data Collection:** First and foremost, we used IGRAC/GGIS to obtain piezometric (groundwater level) data from 2015-2022 for 36 wells distributed across Gambia. Then we gathered corresponding data for our 13 input variables (see <a href="#features">Features</a>), sourced from AρρEEARS, ClimateSERV, BGS, and GGIS (see <a href="#data-sources">Data Sources</a>). Most of the raw data is available under [data/original_data](https://github.com/franfurey/aquaViva/tree/master/data/original_data) (except for a few files that were too large to upload) 
 2. **Data Cleaning and Preprocessing:** We used Jupyter notebooks (see [notebooks/preprocessing](https://github.com/franfurey/aquaViva/tree/master/notebooks/preprocessing)) to manage the various data formats (.nc4, .nc, .csv), visualize/analyze the raw data, and account for missing/erroneous data using nearest neighbor algorithms and linear interpolation. QGIS was also used to process hydrogeological region and topographical data. All processed data is available under [data/processed_data](https://github.com/franfurey/aquaViva/tree/master/data/processed_data)
-3. **Data Integration:** Using pandas & geopandas, we merged datasets based on date, latitude, and longitude to form our primary dataset, which consisted of ~6300 rows. 
+3. **Data Integration:** Using pandas & geopandas, we merged datasets based on date, latitude, and longitude to form our primary dataset, which consisted of ~6600 rows (see [data/processed_data/wells_data_gambia_for_machine_learning.csv](https://github.com/franfurey/aquaViva/blob/master/data/processed_data/wells_data_gambia_for_machine_learning.csv))
 
 ### Data Sources
 
@@ -108,20 +107,25 @@ All relevant Jupyter Notebooks are located in [notebooks/machine_learning](https
 
 # Visualization
 
-7. **Visualization Data:** We first defined an area of interest within QGIS, and then split it up into ~2874 points, each representing a 500m pixel. We then gathered feature data for each of these points (see [data/final_dataset](https://github.com/franfurey/aquaViva/tree/master/data/final_dataset)), processed and compiled it as before (see [notebooks/gambia_dataset](https://github.com/franfurey/aquaViva/tree/master/notebooks/gambia_dataset)), and ran it through the Linear SVR model to get predicted groundwater levels. Note: we only used 500m resolution due to time constraints, higher resolutions would have otherwise been entirely feasible. 
-8. **Visualization Creation:** We first used IDW (Inverse Distance Weighting) interpolation in QGIS to increase the resolution to about 177m. Then we used [kepler.gl](https://kepler.gl/) to put together our interactive visualization, exported it to an html file, and customized it to create our Aqua Viva website.
+7. **Visualization Data:** We first defined an area of interest within QGIS, and then split it up into ~2874 points, each representing a 500m pixel. We then gathered feature data for each of these points (see [data/final_dataset](https://github.com/franfurey/aquaViva/tree/master/data/final_dataset)), processed and compiled it as before (see [notebooks/gambia_dataset](https://github.com/franfurey/aquaViva/tree/master/notebooks/gambia_dataset)), and ran it through the Linear SVR model (see [notebooks/gambia_dataset/LinearSVR_final_dataset.ipynb](https://github.com/franfurey/aquaViva/blob/master/notebooks/gambia_dataset/LinearSVR_final_dataset.ipynb)) to get predicted groundwater levels. Note: we only used 500m resolution due to time constraints, higher resolutions would have otherwise been entirely feasible. 
+8. **Visualization Creation:** Once we had ML model results, we used IDW (Inverse Distance Weighting) interpolation in QGIS to increase the resolution to about 177m, and exported data to a csv. Then we uploaded the csv to [kepler.gl](https://kepler.gl/) and put together our interactive visualization, exported it to an html file, and customized it to create our Aqua Viva website.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE WORK -->
-## Future Work
+# Future Work
 
-This section will talk about future work.
+Given the enormous potential scale of this project, and the fact that we were just 4 people who worked on this for about a month, there is much else that remains to be done:
+* **Model verification.** Although our model was trained on the best open-source data we could find, it was still limited (6600 data points across 36 wells). Despite our best efforts and what we believe to be reasonably accurate results, groundwater level is still a very complex variable to predict and this project would benefit greatly from more data to verify/improve our model.
+* **Streamline model usage.** This was just a rough first pass for the process of getting feature data, running it through our model, and visualizing the results. So an important next step would be to create some sort of tool (perhaps a single Jupyter notebook) that streamlines this process and allows the user to adjust parameters easily.  
+* **Time series data.** Due to time constraints, we only visualized data for one day (December 1, 2023). Especially once model usage is streamlined, it will be much easier to visualize time series data, which would be very useful for evaluating changes in groundwater level over time.
+* **Near real-time data.** It is entirely possible to create a tool that automatically retrieves near real-time data, runs it through our model, and outputs data for visualization. Such a tool could be used for groundwater monitoring.
+* **Expand area of interest.** Again, due to time constraints, we narrowed our focus to a smaller (but still high-impact) region of Gambia. Of course, with more time, it would be relatively trivial to create a visualization for all of Gambia. We have no idea if the model can be extrapolated to other regions of the world, but we think it might potentially be successful in regions with a similar biome to Gambia. More work should be done to verify this.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
-## Contributing
+# Contributing
 
 This section will contain a guide for contributing to our project.
 
@@ -162,8 +166,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-[![GMAIL](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:adzheng@tamu.edu)
-
+[![GMAIL](https://img.shields.io/badge/Adam-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:adzheng@tamu.edu)
+[![LinkedIn](https://img.shields.io/badge/Adam-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adam-zheng/)
+[![LinkedIn](https://img.shields.io/badge/Francisco-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/francisco-furey-44519113b/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
