@@ -19,6 +19,7 @@
   <br />
 </p>
 
+<a name="readme-top"></a>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary><b>Table of Contents</b></summary>
@@ -185,6 +186,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * [A Machine Learning Approach to Predict Groundwater Levels in California Reveals Ecosystems at Risk](https://www.frontiersin.org/articles/10.3389/feart.2021.784499/full#h3)
 * [Groundwater Prediction Using Machine-Learning Tools](https://www.mdpi.com/1999-4893/13/11/300)
 * [Prediction of groundwater level fluctuations under climate change based on machine learning algorithms in the Mashhad aquifer, Iran](https://iwaponline.com/jwcc/article/14/3/1039/93926/Prediction-of-groundwater-level-fluctuations-under)
+* [Global Groundwater Dependent Ecosystems](https://kklausmeyer.users.earthengine.app/view/global-gde)
+* [Our World in Data SDG 6 Tracker](https://ourworldindata.org/sdgs/clean-water-sanitation)
 * [CodePen Back Button](https://codepen.io/ender2821/pen/LpgYOB)
 * [CodePen Info on Hover](https://codepen.io/ruppysuppy/pen/rNWdWNp)
 
