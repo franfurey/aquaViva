@@ -35,8 +35,9 @@
     </li>
     <li><a href="#machine-learning">Machine Learning</a></li>
     <li><a href="#visualization">Visualization</a></li>
-    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#future-work">Future Work</a></li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#built-with">Built With</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#references">References</a></li>
@@ -56,21 +57,21 @@ We believe that this tool has great potential to help communities mitigate water
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Data
-The AquaViva project relies on a diverse array of datasets to train our machine learning models for predicting groundwater levels in Gambia. These datasets include measurements from wells, satellite imagery, climatic variables, and geological features, providing a comprehensive understanding of the factors influencing groundwater levels.
+For our training data, we conducted an extensive literature review into past studies, as well as key concepts such as the water balance equation, in order to determine the variables that would provide a comprehensive set of information for predicting groundwater level. We then collected, cleaned, preprocessed, and integrated the datasets together using Python scripts (see [scripts/preprocessing](https://github.com/franfurey/aquaViva/tree/master/scripts/preprocessing)) and Jupyter Notebooks (see [notebooks/preprocessing](https://github.com/franfurey/aquaViva/tree/master/notebooks/preprocessing))
 
-1. **Data Collection:** First and foremost, we used GGIS to obtain piezometric (groundwater level) data from 2015-2022 for 36 wells distributed across Gambia. Then we gathered corresponding data for our 13 input variables (see <a href="#features">Features</a>), sourced from AρρEEARS, ClimateSERV, BGS, and GGIS (see <a href="#data-sources">Data Sources</a>). QGIS was also used to process hydrogeological region and topographical data.
-2. **Data Cleaning and Preprocessing:** We used Jupyter notebooks to manage the various data formats (.nc4, .nc, .csv), visualize/analyze the raw data, and account for missing/erroneous data using nearest neighbor algorithms and linear interpolation.
-3. **Data Integration:** Using pandas & geopandas, we merged datasets based on date, latitude, and longitude to form our primary dataset, with ~6300 rows. 
+1. **Data Collection:** First and foremost, we used IGRAC/GGIS to obtain piezometric (groundwater level) data from 2015-2022 for 36 wells distributed across Gambia. Then we gathered corresponding data for our 13 input variables (see <a href="#features">Features</a>), sourced from AρρEEARS, ClimateSERV, BGS, and GGIS (see <a href="#data-sources">Data Sources</a>). Most of the raw data is available under [data/original_data](https://github.com/franfurey/aquaViva/tree/master/data/original_data) (except for a few files that were too large to upload) 
+2. **Data Cleaning and Preprocessing:** We used Jupyter notebooks (see [notebooks/preprocessing](https://github.com/franfurey/aquaViva/tree/master/notebooks/preprocessing)) to manage the various data formats (.nc4, .nc, .csv), visualize/analyze the raw data, and account for missing/erroneous data using nearest neighbor algorithms and linear interpolation. QGIS was also used to process hydrogeological region and topographical data. All processed data is available under [data/processed_data](https://github.com/franfurey/aquaViva/tree/master/data/processed_data)
+3. **Data Integration:** Using pandas & geopandas, we merged datasets based on date, latitude, and longitude to form our primary dataset, which consisted of ~6300 rows. 
 
 ### Data Sources
 
-* **[Global Groundwater Information System](https://ggis.un-igrac.org/) (GGIS)**: An interactive portal offering data on global groundwater resources. We use it to access groundwater level data as well as data on hydrogeological regions.
+* **[Global Groundwater Information System](https://ggis.un-igrac.org/) (GGIS)**: An interactive portal by [IGRAC](https://www.un-igrac.org/) that compiles data on global groundwater resources. We use it to access groundwater level data as well as data on hydrogeological regions.
 
 * **[British Geological Survey](https://www2.bgs.ac.uk/groundwater/international/africanGroundwater/maps.html) (BGS)**: This research project by BGS focused on the resilience of African groundwater to climate change. We incorporate their depth to groundwater data, which classifies data into 6 categories (0-7, 7-25, 25-50, 50-100, 100-250, >250 meters) - significantly lower resolution & precision than our targets, but still potentially useful.
 
 * **[Application for Extracting and Exploring Analysis Ready Samples](https://appeears.earthdatacloud.nasa.gov/api/?python#introduction) (AρρEEARS)**: We used this tool to extract various parameters such as NDVI, MIR, EVI, Elevation, Curvature, Drainage Density, and Slope.
 
-* **[ClimateSERV](https://climateserv.servirglobal.net/help)**: A tool by SERVIR, NASA, & USAID that provides climatic and vegetation data. We used the ClimateSERV API and wrote a Python library ([climateservAccess](https://pypi.org/project/climateservaccess/)) to gather soil moisture, evapotranspiration, streamflow, and precipitation data. 
+* **[ClimateSERV](https://climateserv.servirglobal.net/help)**: A tool by SERVIR, NASA, & USAID that provides climatic and vegetation data. We wrote a custom Python library ([climateservAccess](https://pypi.org/project/climateservaccess/)) for accessing the ClimateSERV API and used it to gather soil moisture, evapotranspiration, streamflow, and precipitation data. 
 
 ### Features
 | Datatype                                      | Description                                      | Data Source                                 | Resolution       |
@@ -97,6 +98,7 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Machine Learning
+All relevant Jupyter Notebooks are located in [notebooks/machine_learning](https://github.com/franfurey/aquaViva/tree/master/notebooks/machine_learning). 
 
 4. **Model Selection and Training:** First, we divided our dataset based on well IDs to avoid overfitting, allocating 83% for training and 17% for testing. We trained 6 different regression models using [scikit-learn](https://scikit-learn.org/stable/):  [SVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html), [AdaBoostRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html), [GradientBoostingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html), [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [SGDRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html), and [LinearSVR](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html). Our computational resources limited our ability to test more computationally intensive models like neural networks. However, with access to more powerful machines, exploring these models could yield even more promising results.
 5. **Model Evaluation:** We employed metrics like [Mean Squared Error (MSE)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html), [Mean Absolute Error (MAE)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html), and [Coefficient of Determination (R²)](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html) for performance assessment, achieving our best result (MAE = 2.6 m, R² = 0.42) with **Linear SVR**.
@@ -106,9 +108,22 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 
 # Visualization
 
-7. **Visualization Data:** We gathered feature data for our area of interest, processed and compiled it as before, and ran it through the Linear SVR model to get predicted groundwater levels. Due to time constraints, we only used data at 500m resolution, but higher resolutions would have otherwise been entirely feasible. 
+7. **Visualization Data:** We first defined an area of interest within QGIS, and then split it up into ~2874 points, each representing a 500m pixel. We then gathered feature data for each of these points (see [data/final_dataset](https://github.com/franfurey/aquaViva/tree/master/data/final_dataset)), processed and compiled it as before (see [notebooks/gambia_dataset](https://github.com/franfurey/aquaViva/tree/master/notebooks/gambia_dataset)), and ran it through the Linear SVR model to get predicted groundwater levels. Note: we only used 500m resolution due to time constraints, higher resolutions would have otherwise been entirely feasible. 
 8. **Visualization Creation:** We first used IDW (Inverse Distance Weighting) interpolation in QGIS to increase the resolution to about 177m. Then we used [kepler.gl](https://kepler.gl/) to put together our interactive visualization, exported it to an html file, and customized it to create our Aqua Viva website.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE WORK -->
+## Future Work
+
+This section will talk about future work.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+This section will contain a guide for contributing to our project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,15 +148,6 @@ The AquaViva project relies on a diverse array of datasets to train our machine 
 ![Kepler.gl](https://img.shields.io/badge/Kepler.gl-%2300aee3.svg?style=for-the-badge&logo=kepler&logoColor=black)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-This section will contain a guide for contributing to our project.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
