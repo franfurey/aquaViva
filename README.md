@@ -127,7 +127,13 @@ Given the enormous potential scale of this project, and the fact that we were ju
 <!-- CONTRIBUTING -->
 # Contributing
 
-This section will contain a guide for contributing to our project.
+Whether you would like to help with any of the future work outlined above, add your own data/ML models, or have any other ideas/suggestions - all contributions are welcome and encouraged! Simply fork the repo and create a pull request. You can also open an issue with the tag "enhancement". Thanks in advance for your contributions, and feel free to <a href="#contact">contact us</a> with questions!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
