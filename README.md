@@ -41,6 +41,7 @@
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#references">References</a></li>
   </ol>
 </details>
@@ -53,7 +54,7 @@ AquaViva is an innovative project aimed at addressing one of the most important 
 
 We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good. As per challenge guidelines, all datasets and tools used were 100% open-source.
 
-**Created by Team Viva Aqua** | **Francisco Furey, Adam Zheng, Malena Vildoza, Malick Dieye (AKA Jay) 😊**
+**Created by Team Viva Aqua** | **Francisco Furey, Adam Zheng, Malena Vildoza, El Hadji Malick DIEYE (AKA Jay) 😊**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,6 +159,8 @@ Whether you would like to help with any of the future work outlined above, add y
 ![climateservAccess](https://img.shields.io/badge/climateservAccess-%230049a3.svg?style=for-the-badge&logo=python&logoColor=orange)
 ![QGIS](https://img.shields.io/badge/QGIS-%23006e4b.svg?style=for-the-badge&logo=qgis&logoColor=white)
 ![Kepler.gl](https://img.shields.io/badge/Kepler.gl-%2300aee3.svg?style=for-the-badge&logo=kepler&logoColor=black)
+![ChatGPT](https://img.shields.io/badge/ChatGPT-%2373a99b.svg?style=for-the-badge&logo=gpt&logoColor=white)
+![Copilot](https://img.shields.io/badge/Copilot-%23111680.svg?style=for-the-badge&logo=copilot&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,8 +184,15 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* Thank you to [TANGO](https://tango.gm/) (The Association of Non-Governmental Organizations in the Gambia) for their insights and for connecting us with community leaders in the Gambia
+* Thank you to [Jun Yuan Zhang](https://geoweb.tamu.edu/people/profiles/students/zhangjunyuan.html) for his advice regarding groundwater level prediction
 
-<!-- ACKNOWLEDGMENTS -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- REFERENCES -->
 ## References
 * [A Machine Learning Approach to Predict Groundwater Levels in California Reveals Ecosystems at Risk](https://www.frontiersin.org/articles/10.3389/feart.2021.784499/full#h3)
 * [Groundwater Prediction Using Machine-Learning Tools](https://www.mdpi.com/1999-4893/13/11/300)
