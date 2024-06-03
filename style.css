@@ -25,8 +25,8 @@ body h1 {
 }
 body h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.35vmax;
-    letter-spacing: 0.15vmax;
+    font-size: 1.36vmax;
+    letter-spacing: 0.23vmax;
     color: #008dce;
     text-align: center;
     margin-top: 0px;
@@ -37,8 +37,8 @@ body h2 {
 #button-container {
     position: absolute; /* Absolute positioning */
     left: 50%; /* Center horizontally */
-    bottom: 18vh;
-    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    bottom: 35vh;
+    transform: translate(-75%, -75%); /* Adjust for exact centering */
     width: 6vw; /* Auto width based on content */
 }
 
@@ -113,3 +113,17 @@ i[data-tooltip]::after {
     cursor: pointer;
   }
   
+#bestoverall {
+  font-family: 'Georgia', serif;
+  font-size: 0.95vmax;
+  letter-spacing: 0.05vmax;
+  color: #cacaca;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
+  left: 50%;
+  bottom: 4vh;
+}
