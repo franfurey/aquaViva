@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://franfurey.github.io/aquaViva/" target="_blank">
-    <img src="visualization/public/visual.png"/>
+    <img src="visualization/public/poster.png"/>
   </a>
 </div>
 
@@ -52,9 +52,9 @@
 # About
 AquaViva is an innovative project aimed at addressing one of the most important sustainable development goals and overall global humanitarian challenges of our time - the lack of access to clean water (SDG 6). To accomplish this, we are using cutting-edge machine learning models, trained on various datasets including satellite imagery, climatic variables, and geological features, to produce near real-time, high resolution maps of groundwater level.
 
-We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Visualization Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good. As per challenge guidelines, all datasets and tools used were 100% open-source.
+We believe that this tool has great potential to help communities mitigate water scarcity, monitor groundwater, and efficiently identify suitable sources of clean water. As such, we are committed to keeping our project open-source and free-to-use, and we welcome any contributors to build off of what we have done. This project is part of [NASA's Pale Blue Dot Challenge](https://www.drivendata.org/competitions/256/pale-blue-dot/), which shares our deep commitment to using technology for environmental and social good. We are ecstatic to say that we have been recognized as [**Best Overall**](https://drivendata.co/blog/pale-blue-dot-winners) in the challenge!
 
-**Created by Team Viva Aqua** | **Francisco Furey, Adam Zheng, Malena Vildoza, El Hadji Malick DIEYE (AKA Jay) 😊**
+**Created by Team Viva Aqua | Francisco Furey, Adam Zheng, Malena Vildoza, El Hadji Malick DIEYE (AKA Jay) 😊**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
